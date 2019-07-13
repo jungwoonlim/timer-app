@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, StatusBar } from "react-native";
+import Button from "../Button";
 
 class Timer extends Component {
   render() {
@@ -10,7 +11,9 @@ class Timer extends Component {
           <Text style={styles.time}>25:00</Text>
         </View>
         <View style={styles.lower}>
-          <Text>BUTTONS HERE</Text>
+          <Button iconName={"ios-pause"} />
+          <Button iconName={"ios-play"} />
+          <Button iconName={"ios-square"} />
         </View>
       </View>
     );
@@ -30,7 +33,10 @@ const styles = StyleSheet.create({
   lower: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "row",
+    paddingLeft: 25,
+    paddingRight: 25
   },
   time: {
     color: "white",
