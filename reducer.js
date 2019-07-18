@@ -1,4 +1,4 @@
-// Import
+// Imports
 
 // Actions
 
@@ -39,35 +39,39 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case START_TIMER:
-      return applyStartTimer(state);
+      return applyStartTimer(state, action);
     case RESTART_TIMER:
-      return applyRestartTimer(state);
+      return applyRestartTimer(state, action);
     case ADD_SECOND:
-      return applyAddSecond(state);
+      return applyAddSecond(state, action);
+    default:
+      return state;
   }
 }
 
-// ReducerFunctions
+// Reducer Functions
 
 function applyStartTimer(state) {
+  return {
+    ...state,
+    isPlaying: true,
+    elapsedTime: 0
+  };
+}
+
+function applyRestartTimer(state) {
   return {
     ...state,
     isPlaying: true
   };
 }
-function applyRestartTimer(state) {
-  return {
-    ...state,
-    isPlaying: false,
-    elapsedTime: 0
-  };
-}
+
 function applyAddSecond(state) {
-  // new state
-  if (state.elapsedTime < TIMER_DURATION) {
+  const { elapsedTime } = state;
+  if (elapsedTime < TIMER_DURATION) {
     return {
       ...state,
-      elapsedTime: state.elapsedTime + 1
+      elapsedTime: elapsedTime + 1
     };
   } else {
     return {
@@ -77,7 +81,7 @@ function applyAddSecond(state) {
   }
 }
 
-// Export Action Creators
+// Exports
 
 const actionCreators = {
   startTimer,
@@ -85,6 +89,6 @@ const actionCreators = {
   addSecond
 };
 
-// Export Reducer
+// Default
 
 export default reducer;
