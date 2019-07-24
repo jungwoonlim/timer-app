@@ -51,7 +51,7 @@ function reducer(state = initialState, action) {
 
 // Reducer Functions
 
-function applyStartTimer(state) {
+function applyStartTimer(state, action) {
   return {
     ...state,
     isPlaying: true,
@@ -59,14 +59,15 @@ function applyStartTimer(state) {
   };
 }
 
-function applyRestartTimer(state) {
+function applyRestartTimer(state, action) {
   return {
     ...state,
-    isPlaying: true
+    isPlaying: false,
+    elapsedTime: 0
   };
 }
 
-function applyAddSecond(state) {
+function applyAddSecond(state, action) {
   const { elapsedTime } = state;
   if (elapsedTime < TIMER_DURATION) {
     return {

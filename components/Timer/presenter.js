@@ -6,6 +6,7 @@ class Timer extends Component {
   componentWillReceiveProps(nextProps) {
     const currentProps = this.props;
     if (!currentProps.isPlaying && nextProps.isPlaying) {
+      // start the interval
       const timerInterval = setInterval(() => {
         currentProps.addSecond();
       }, 1000);
@@ -13,6 +14,7 @@ class Timer extends Component {
         interval: timerInterval
       });
     } else if (currentProps.isPlaying && !nextProps.isPlaying) {
+      // stop the interval
       clearInterval(this.state.interval);
     }
   }
@@ -33,7 +35,7 @@ class Timer extends Component {
         </View>
         <View style={styles.lower}>
           {!isPlaying && <Button iconName={"ios-play"} onPress={startTimer} />}
-          {!isPlaying && (
+          {isPlaying && (
             <Button iconName={"ios-square"} onPress={restartTimer} />
           )}
         </View>
