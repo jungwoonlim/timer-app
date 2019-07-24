@@ -8,9 +8,9 @@ class Button extends Component {
     iconName: PropTypes.string.isRequired
   };
   render() {
-    const { iconName } = this.props;
+    const { iconName, onPress } = this.props;
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPressOut={onPress}>
         <View style={styles.container}>
           <Ionicons name={iconName} size={40} color="#CE0B24" />
         </View>
